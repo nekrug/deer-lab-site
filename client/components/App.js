@@ -10,6 +10,7 @@ class App extends Component {
     return (
       <div className='container'>
         <h1>Tic Tac Toe</h1>
+        <p>hello world</p>
       </div>
     );
   }

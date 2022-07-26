@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const researchRouter = require('./routes/researchRouter');
 
 const app = express();
 const PORT = 3000;
@@ -10,7 +11,7 @@ app.use('/dist', express.static(path.join(__dirname, '../dist')));
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
-
+app.use('/dbtest', researchRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use('*', (req, res) => res.sendStatus(404));
