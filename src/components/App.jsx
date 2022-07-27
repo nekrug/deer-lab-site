@@ -8,6 +8,13 @@ import Join from '../pages/Join';
 import Resources from '../pages/Resources';
 import NotFound from '../pages/NotFound';
 
+// Import our custom CSS
+import '../scss/styles.scss';
+
+// Import all of Bootstrap's JS
+import * as bootstrap from 'bootstrap';
+
+
 class App extends Component {
   constructor(props) {
     super(props);
