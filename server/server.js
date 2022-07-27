@@ -5,6 +5,10 @@ const researchRouter = require('./routes/researchRouter');
 const app = express();
 const PORT = 3000;
 
+// handle parsing request body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // URL route handlers defined here
 // app.get('/', express.static(path.join(__dirname, '../dist/index.html')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
