@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
-    // entry point of our app
     './client/index.js',
   ],
   output: {
@@ -12,34 +11,35 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  // mode: 'development',
   mode: process.env.NODE_ENV,
   devServer: {
     host: 'localhost',
     port: 8080,
-    // enable HMR on the devServer
     hot: true,
     // fallback to root for other urls
-    // historyApiFallback: true,
-    // watchContentBase: true,
-
+    historyApiFallback: true,
     static: {
       // match the output path
       directory: path.resolve(__dirname, './dist/'),
       // match the output 'publicPath'
-      publicPath: '/',
+      publicPath: '/dist',
     },
     proxy: {
-      '/**': {
+      '/research': {
         target: 'http://localhost:3000/',
         secure: false,
       },
-      '/assets/**': {
+      '/research/**': {
         target: 'http://localhost:3000/',
         secure: false,
       },
     },
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './client/index.html',
+    }),
+  ],
   module: {
     rules: [
       {
@@ -72,9 +72,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './client/index.html',
-    }),
-  ],
 };

@@ -6,7 +6,6 @@ const dbController = {
     try {
       const text = 'SELECT * FROM research WHERE deleted_on IS NULL';
       const result = await db.query(text);
-      console.log(result);
       res.locals.research = result.rows;
       return next();
     }
@@ -66,7 +65,7 @@ const dbController = {
       SET (name, description, long_description, image_source, enrollment_form_url, type_id, status) = ($2, $3, $4, $5, $6, $7, $8)
       WHERE id = $1;`;
       await db.query(text, values);
-      const result = await db.query('SELECT * FROM research WHERE id = $1;');
+      const result = await db.query('SELECT * FROM research WHERE id = $1;', [id]);
       res.locals.updatedResearch = result.rows;
       return next();
     }
@@ -80,7 +79,7 @@ const dbController = {
     try {
       console.log(req.body)
       const text = 'UPDATE research SET deleted_on = current_timestamp WHERE id = $1';
-      await db.query(text, [ req.body.id ]);
+      await db.query(text, [req.body.id]);
       return next();
     }
     catch(err) {
@@ -92,7 +91,7 @@ const dbController = {
   undeleteResearch: async (req, res, next) => {
     try {
       const text = 'UPDATE research SET deleted_on = NULL WHERE id = $1';
-      await db.query(text, req.body.id);
+      await db.query(text, [req.body.id]);
       return next();
     }
     catch(err) {
