@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --hot --progress --color\" \"nodemon ./server/server.js\"",
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --progress --color\" \"nodemon ./server/server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,6 +16,8 @@
   "author": "Nick Krug",
   "license": "ISC",
   "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "bootstrap": "^5.2.0",
     "express": "^4.18.1",
     "node-fetch": "^3.2.9",
     "pg": "^8.7.3",
@@ -23,13 +25,13 @@
     "react-dom": "^16.8.0",
     "react-hot-loader": "^4.13.0",
     "react-router": "^6.3.0",
-    "react-router-dom": "^6.3.0",
-    "sass-loader": "^13.0.2"
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.3",
     "concurrently": "^6.4.0",
     "cross-env": "^7.0.3",
@@ -38,6 +40,9 @@
     "eslint-plugin-react": "^7.21.5",
     "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.19",
+    "postcss-loader": "^7.0.1",
+    "sass": "^1.54.0",
+    "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
     "webpack": "^5.64.1",
     "webpack-cli": "^4.9.1",

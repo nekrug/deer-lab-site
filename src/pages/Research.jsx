@@ -1,7 +1,13 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, {Component} from 'react';
 
-class App extends Component {
+// function Research() {
+//   return (
+//     <h1>Studies and Projects... presumably we`&apos`ll import components and the db logic in here somehow </h1>
+//   );
+// }
+
+// TODO: Refactor this into a functional layout component with the business logic in actual components
+class Research extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +17,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/research/')
+    fetch('/research/api')
       .then(res => res.json())
       .then((research) => {
 
@@ -50,4 +56,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Research;

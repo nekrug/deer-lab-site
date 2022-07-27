@@ -13,9 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 // app.get('/', express.static(path.join(__dirname, '../dist/index.html')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+  return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
 });
-app.use('/research', researchRouter);
+app.use('/research/api', researchRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use('*', (req, res) => res.sendStatus(404));
