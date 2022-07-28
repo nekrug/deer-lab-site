@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Container from 'react-bootstrap/Container';
 import Accordion from 'react-bootstrap/Accordion';
+import StudyAdminContainer from '../components/StudyAdminContainer';
 import Study from '../components/Study';
 
 // TODO: refactor StudyAdmin into a functional component
@@ -19,7 +20,7 @@ class StudyAdmin extends Component {
         // and the image_source needs to be in the POST request
   // 
   
-
+// TODO: When we have numbers, we can put them in the header using length of the appropriate prop.
   render() {
     return (
       <Container>

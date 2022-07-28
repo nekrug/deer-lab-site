@@ -78,9 +78,9 @@ const dbController = {
 
   deleteResearch: async (req, res, next) => {
     try {
-      console.log(req.body)
+      console.log(req.query);
       const text = 'UPDATE research SET deleted_on = current_timestamp WHERE id = $1';
-      await db.query(text, [req.body.id]);
+      await db.query(text, [req.query.id]);
       return next();
     }
     catch(err) {
@@ -92,7 +92,7 @@ const dbController = {
   undeleteResearch: async (req, res, next) => {
     try {
       const text = 'UPDATE research SET deleted_on = NULL WHERE id = $1';
-      await db.query(text, [req.body.id]);
+      await db.query(text, [req.query.id]);
       return next();
     }
     catch(err) {

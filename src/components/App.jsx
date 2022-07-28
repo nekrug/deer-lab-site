@@ -29,6 +29,8 @@ class App extends Component {
         deleted: [],
       },
     };
+
+    this.deleteStudy = this.deleteStudy.bind(this);
   }
 
   refresh(status) {
@@ -52,11 +54,27 @@ class App extends Component {
       .catch(err => console.log('app.refresh: get research: ERROR: ', err));
   }
 
-  componentDidMount() {
+  refreshAll() {
     this.refresh('draft');
     this.refresh('active');
     this.refresh('archived');
     this.refresh('deleted');
+  }
+
+  deleteStudy(id) {
+    this.setState({fetchedResearch: false});
+    fetch(`/research/api?id=${id}`, {
+      method: 'DELETE'
+    }).then(this.refreshAll)
+      .then(this.setState({fetchedResearch: true}));
+  }
+
+  updateStudy(props) {
+    console.log('we require additional pylons');
+  }
+
+  componentDidMount() {
+    this.refreshAll();
     this.setState({fetchedResearch: true});
     console.log(this.state);
   }
@@ -73,7 +91,11 @@ class App extends Component {
               <Route path='members' element={<Members />} />
               <Route path='join' element={<Join />} />
               <Route path='resources' element={<Resources />} />
-              <Route path='studyadmin' element={<StudyAdmin state={this.state} />} />
+              <Route path='studyadmin' element={<StudyAdmin 
+                state={this.state} 
+                deleteStudy={this.deleteStudy}
+                updateStudy={this.updateStudy}
+              />} />
               
               <Route path='*' element={<NotFound />} />
             </Route>
