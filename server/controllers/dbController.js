@@ -4,8 +4,9 @@ const db = require('../models/dbmodel.js');
 const dbController = {
   getResearch: async (req, res, next) => {
     try {
-      const text = 'SELECT * FROM research WHERE deleted_on IS NULL ORDER BY ID DESC';
-      const result = await db.query(text);
+      const values = [req.query.status];
+      const text = 'SELECT * FROM research WHERE deleted_on IS NULL AND status = $1 ORDER BY ID DESC';
+      const result = await db.query(text, values);
       res.locals.research = result.rows;
       return next();
     }
