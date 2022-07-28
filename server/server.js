@@ -12,10 +12,14 @@ app.use(express.urlencoded({ extended: true }));
 // URL route handlers defined here
 // app.get('/', express.static(path.join(__dirname, '../dist/index.html')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
+app.use('/assets', express.static(path.join(__dirname, '../src/assets')));
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
 });
 app.use('/research/api', researchRouter);
+app.get('/*', (req, res) => {
+  return res.status(200).redirect('/');
+});
 
 // catch-all route handler for any requests to an unknown route
 app.use('*', (req, res) => res.sendStatus(404));

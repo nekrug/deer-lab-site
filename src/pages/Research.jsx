@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Study from '../components/Study';
 
 // function Research() {
 //   return (
@@ -46,13 +47,33 @@ class Research extends Component {
       <div>No studies found</div>
     );
 
+    // return (
+    //   <div className='container'>
+    //     <h1>{research[0].name}</h1>
+    //     <p>{research[0].description}</p>
+    //     <p>{research[0].long_description}</p>
+    //   </div>
+    // );
+    // TODO: Try this with research.map the way it's done in the DB section - that's so cool!
+    const studies = [];
+    research.forEach((el, idx) => {
+      studies.push(
+        <Study
+          key = {'study' + idx}
+          id = {el.id}
+          title = {el.name}
+          description = {el.description}
+          imageSource = {el.image_source}
+        />
+      );
+    });
+
     return (
-      <div className='container'>
-        <h1>{research[0].name}</h1>
-        <p>{research[0].description}</p>
-        <p>{research[0].long_description}</p>
-      </div>
+      <>
+        {studies}
+      </>
     );
+
   }
 }
 
