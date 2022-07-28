@@ -5,7 +5,7 @@ import Study from './Study';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function StudyAdminContainer(props) {
+function DeletedStudyAdminContainer(props) {
   const { id, name, description, image_source } = props.study;
   return (
     <Container className="m-1 border py-2">
@@ -17,15 +17,13 @@ function StudyAdminContainer(props) {
         imageSource = {image_source}
       />
       <Row>
-        <Col md={{span: 4, offset: 5}}></Col>
+        <Col md={{span: 4, offset: 6}}></Col>
         <Col>
-          <Button className="border px-2" onClick={() => props.deleteStudy(id)} variant="outline-danger">Delete</Button>
-          <span>  </span>
-          <Button className="border px-2" onClick={() => props.openStudyModal(props.study)} variant="outline-primary">Update</Button>
+          <Button className="border px-2" onClick={() => props.undeleteStudy(id)} variant="outline-danger">Undelete</Button>
         </Col>
       </Row>
     </Container>
   )
 }
 
-export default StudyAdminContainer;
+export default DeletedStudyAdminContainer;

@@ -31,6 +31,9 @@ class App extends Component {
     };
 
     this.deleteStudy = this.deleteStudy.bind(this);
+    this.undeleteStudy = this.undeleteStudy.bind(this);
+    this.refresh = this.refresh.bind(this);
+    this.refreshAll = this.refreshAll.bind(this);
   }
 
   refresh(status) {
@@ -69,6 +72,14 @@ class App extends Component {
       .then(this.setState({fetchedResearch: true}));
   }
 
+  undeleteStudy(id) {
+    this.setState({fetchedResearch: false});
+    fetch(`/research/api/undelete?id=${id}`, {
+      method: 'PATCH'
+    }).then(this.refreshAll)
+      .then(this.setState({fetchedResearch: true}));
+  }
+
   updateStudy(props) {
     console.log('we require additional pylons');
   }
@@ -92,8 +103,10 @@ class App extends Component {
               <Route path='join' element={<Join />} />
               <Route path='resources' element={<Resources />} />
               <Route path='studyadmin' element={<StudyAdmin 
-                state={this.state} 
-                deleteStudy={this.deleteStudy}
+                fetchedResearch = {this.state.fetchedResearch}
+                research={this.state.research} 
+                deleteStudy={this.deleteStudy} 
+                undeleteStudy={this.undeleteStudy}
                 updateStudy={this.updateStudy}
               />} />
               
