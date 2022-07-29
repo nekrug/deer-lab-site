@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NewStudyModal from '../components/NewStudyModal';
 
-function NewStudyContainer() {
-
+function NewStudyContainer(props) {
+  console.log(props);
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
@@ -16,7 +16,7 @@ function NewStudyContainer() {
           New Study
         </Button>
       </Col>
-      <NewStudyModal show={modalShow} onHide={() => setModalShow(false)}/>
+      <NewStudyModal createStudy={props.createStudy} show={modalShow} onHide={() => setModalShow(false)}/>
     </Row>
   );
 }

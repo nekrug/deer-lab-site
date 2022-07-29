@@ -34,6 +34,7 @@ class App extends Component {
     this.undeleteStudy = this.undeleteStudy.bind(this);
     this.refresh = this.refresh.bind(this);
     this.refreshAll = this.refreshAll.bind(this);
+    this.createStudy = this.createStudy.bind(this);
   }
 
   refresh(status) {
@@ -80,8 +81,35 @@ class App extends Component {
       .then(this.setState({fetchedResearch: true}));
   }
 
-  updateStudy(props) {
+  updateStudy(study) {
     console.log('we require additional pylons');
+  }
+
+  createStudy(title, description, fileName) {
+    // three things:
+    // 2) Write our image to our file system.
+    // 1) Call the create API and pass in our variables. hardcode the ones we don't care about
+    // 3) call refresh all
+    
+    const body = {
+      name: title,
+      description: description,
+      long_description: '',
+      image_source: fileName,
+      enrollment_form_url: '',
+      type_id: 1,
+      created_by: 'still hardcoded',
+    };
+
+    fetch('/research/api/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON'
+      },
+      body: JSON.stringify(body)
+    }).then(resp => resp.json())
+      .then(data => console.log(data))
+      .then(this.refreshAll);
   }
 
   componentDidMount() {
@@ -108,6 +136,7 @@ class App extends Component {
                 deleteStudy={this.deleteStudy} 
                 undeleteStudy={this.undeleteStudy}
                 updateStudy={this.updateStudy}
+                createStudy={this.createStudy}
               />} />
               
               <Route path='*' element={<NotFound />} />

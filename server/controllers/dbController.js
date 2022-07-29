@@ -33,7 +33,7 @@ const dbController = {
       if (!name || !description || !type_id) throw new Error('Missing required field: name, description, or type_id.');
       const text = `INSERT INTO research 
         (name, description, long_description, image_source, enrollment_form_url, type_id, created_by, status, created_on)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, 'draft', current_timestamp);`;
+        VALUES ($1, $2, $3, $4, $5, $6, $7, 'active', current_timestamp);`;
       const values = [name, description, long_description, image_source, enrollment_form_url, type_id, created_by];
       await db.query(text, values);
       // TODO: Don't return the entire research study back to the client probably.

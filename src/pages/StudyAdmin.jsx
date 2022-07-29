@@ -51,29 +51,24 @@ class StudyAdmin extends Component {
   
   // TODO: When we have numbers, we can put them in the header using length of the appropriate prop.
   render() {
-    console.log(this.props);
-    console.log(this.props.research);
+    // console.log(this.props);
+    // console.log(this.props.research);
     const { draft, active, archived, deleted } = this.props.research;
     
     // Populate each accordian section
+    const draftStudies = this.populateSection(draft);
     const activeStudies = this.populateSection(active);
     const deletedStudies = this.populateSection(deleted, true);
 
 
     return (
       <Container>
-        <NewStudyContainer/>
+        <NewStudyContainer createStudy={this.props.createStudy}/>
         <Accordion defaultActiveKey="1">
           <Accordion.Item eventKey="0">
-            <Accordion.Header>Drafts</Accordion.Header>
+            <Accordion.Header>Drafts ({draft.length})</Accordion.Header>
             <Accordion.Body>
-             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
+              {draftStudies}
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="1">
