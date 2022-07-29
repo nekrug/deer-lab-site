@@ -5,7 +5,7 @@ CREATE TABLE "research" (
   "long_description" varchar,
   "image_source" varchar,
   "enrollment_form_url" varchar,
-  "status" varchar default "draft",
+  "status" varchar DEFAULT "draft",
   "type_id" int NOT NULL,
   "sort_order" numeric,
   "deleted_on" timestamp,
